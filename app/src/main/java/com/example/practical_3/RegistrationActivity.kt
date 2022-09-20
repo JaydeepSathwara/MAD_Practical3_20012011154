@@ -1,9 +1,13 @@
 package com.example.practical_3
 
-import android.os.Bundle
-import android.widget.Toolbar
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.text.method.LinkMovementMethod
+import android.widget.TextView
 import androidx.core.view.WindowCompat
+import com.example.practical_3.databinding.ActivityMainBinding
+import com.example.practical_3.databinding.ActivityRegistrationBinding
 
 class RegistrationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegistrationBinding
@@ -12,42 +16,24 @@ class RegistrationActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
-//        binding = ActivityRegistrationBinding.inflate(layoutInflater)
+        binding = ActivityRegistrationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-//        binding.loginText.setOnClickListener {
-//            Intent(this, LoginActivity::class.java).also {startActivity(it)}
-////            binding.loginText.movementMethod = LinkMovementMethod.getInstance();
-//        }
 
-//        binding.bottomNavigationView.selectedItemId = R.id.bottom_nav_reg
-//        binding.bottomNavigationView.setOnItemSelectedListener { it ->
-//            when (it.itemId) {
-//                R.id.bottom_nav_login -> {
-//                    Intent(this, LoginActivity::class.java).also { startActivity(it) }
-//                }
-//            }
-//            return@setOnItemSelectedListener true
+        binding.loginText.setOnClickListener {
+            Intent(this, LoginActivity::class.java).also {startActivity(it)}
+            binding.loginText.movementMethod = LinkMovementMethod.getInstance();
         }
 
-    private fun setSupportActionBar(toolbar: Toolbar?) {
-
+        binding.bottomNavigationView.selectedItemId = R.id.bottom_nav_reg
+        binding.bottomNavigationView.setOnItemSelectedListener { it ->
+            when (it.itemId) {
+                R.id.bottom_nav_login -> {
+                    Intent(this, LoginActivity::class.java).also { startActivity(it) }
+                }
+            }
+            return@setOnItemSelectedListener true
+        }
     }
-}
-
-class ActivityRegistrationBinding {
-
-    val root: Int
-        get() {
-            TODO()
-        }
-    val loginText: Any
-        get() {
-            TODO()
-        }
-    val toolbar: Toolbar?
-        get() {
-            TODO()
-        }
 }
